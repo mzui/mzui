@@ -10,6 +10,7 @@ module.exports = {
       .set("@", resolve("src"))
       .set("@assets", resolve("src/assets"))
       .set("@coms", resolve("src/components"))
+      .set("@views", resolve("src/views"))
   },
   css: {
     loaderOptions: {

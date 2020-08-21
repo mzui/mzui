@@ -1,6 +1,6 @@
 <template>
-  <div class="about">
-    <a @click="onDe">This is an about page ok my home</a>
+  <div class="setting">
+    <a @click="onDe">setting</a>
   </div>
 </template>
 <script>
