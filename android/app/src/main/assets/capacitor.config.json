@@ -1,0 +1,38 @@
+{
+  "appId": "com.mzui.ui",
+  "appName": "mzui",
+  "bundledWebRuntime": true,
+  "npmClient": "yarn",
+  "webDir": "dist",
+  "plugins": {
+    "SplashScreen": {
+      "launchShowDuration": 0
+    }
+  },
+  "windowsAndroidStudioPath": "d:\\pf\\Android Studio\\bin\\studio64.exe",
+  "cordova": {},
+  "hideLogs": true,
+  "overrideUserAgent": "",
+  "appendUserAgent": "",
+  "backgroundColor": "#ffffffff",
+  "android": {
+    "overrideUserAgent": "my custom user agent for Android",
+    "appendUserAgent": "",
+    "backgroundColor": "#ffffffff",
+    "allowMixedContent": true,
+    "captureInput": true,
+    "webContentsDebuggingEnabled": true,
+    "hideLogs": true
+  },
+  "ios": {
+    "overrideUserAgent": "my custom user agent for iOS",
+    "appendUserAgent": "string to append for iOS",
+    "backgroundColor": "#ffffffff",
+    "contentInset": "always",
+    "cordovaSwiftVersion": "4.2",
+    "minVersion": "11.3",
+    "cordovaLinkerFlags": ["-ObjC"],
+    "allowsLinkPreview": false,
+    "hideLogs": true
+  }
+}
