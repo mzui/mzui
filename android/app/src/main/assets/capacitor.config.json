@@ -34,5 +34,8 @@
     "cordovaLinkerFlags": ["-ObjC"],
     "allowsLinkPreview": false,
     "hideLogs": true
+  },
+  "server": {
+    "url": "http://192.168.1.101:4000"
   }
 }
