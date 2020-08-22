@@ -1,11 +1,13 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
-
-import modules from './modules';
+import config from '../config';
 
 Vue.use(Vuex);
 
-const vuex = new Vuex.Store({
+//const modules = config.isLarge ? require('./large') : require('./small');
+const modules = require(`./#{view}`);
+console.log(">>>>>>>>modules", modules);
+/* const vuex = new Vuex.Store({
   modules,
   plugins: [
     //createPersistedState(),
@@ -13,13 +15,16 @@ const vuex = new Vuex.Store({
   ],
   strict: process.env.NODE_ENV !== 'production',
 });
- 
-
-/* Vue.use((Vue, options) => {
-  Vue['$vuex'] = vuex;
-}); */
- 
-(async () => {
- 
-})();
-export default vuex;
+  */
+export default new Vuex.Store({
+  state: {
+    //
+  },
+  mutations: {
+    //
+  },
+  actions: {
+    //
+  },
+  modules: modules,
+});

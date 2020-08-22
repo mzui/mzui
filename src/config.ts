@@ -9,15 +9,15 @@ export enum Target {
   Electron = 'electron',
   Ios = 'ios',
 }
+console.log("config ===============  ", process.env);
+const isDev = process.env.NODE_ENV === 'development';
 const Config = {
-  platform: Platform.Android,
-  target: Target.AndroidMobile,
-  get viewport() {
-    let v = process.env.Viewport;
-    return !!v ? v : 'small';
-  },
-  isLarge(){
-      return Config.viewport == 'large'
-  }
+  isDev: isDev,
+  loggerLevel: 'info',
+  platform: process.env.Platform,
+  target: process.env.Target,
+  view: process.env.View,
+  isLarge: process.env.View == 'large',
+  apiHost: 'http://127.0.0.1:8081'
 };
 export default Config;

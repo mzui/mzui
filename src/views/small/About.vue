@@ -1,13 +1,13 @@
 <template>
   <div class="about">
-    <a @click="onDe">about</a>
+    <a @click="onDe">about    11</a>
   </div>
 </template>
 <script>
 export default {
   methods: { 
     onDe(){
-      console.log(">>>>ssss");
+      console.log(">>>>ssssd");
     }
   }
 }

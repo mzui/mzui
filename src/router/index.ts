@@ -1,30 +1,9 @@
 import Vue from 'vue';
 import VueRouter, { RouteConfig } from 'vue-router';
-import Home from '../views/Home.vue';
 import config from '../config';
-//import smallRoutes from './small.router';
-const smallRoutes = require('./small.router');
+import ui from '../common/ui';
 Vue.use(VueRouter);
-const routes = config.isLarge() ? require('./large.router').routes : require('./small.router').routes;
-
-console.log('....routes', routes)
-/* 
-const routes: RouteConfig[] = [
-  {
-    path: '/',
-    name: 'Home',
-    component: Home,
-  },
-  {
-    path: '/about',
-    name: 'About',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import( '../views/About.vue'),
-  },
-]; */
-
+const routes = require('./#{view}.router').routes;
 
 const router = new VueRouter({
   mode: 'history',
@@ -34,11 +13,12 @@ const router = new VueRouter({
 
 router.beforeEach(async (to, from, next) => {
   //ViewUI['LoadingBar'] && ViewUI['LoadingBar'].start();
-  console.log("........", from, to);
+  ui.loadingBar.start();
   next();
 });
-/* router.afterEach((route) => {
-  ViewUI['LoadingBar'] && ViewUI['LoadingBar'].finish();
+router.afterEach((route) => {
+  //ViewUI['LoadingBar'] && ViewUI['LoadingBar'].finish();
+  ui.loadingBar.finish();
 });
- */
+
 export default router;

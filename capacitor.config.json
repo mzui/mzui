@@ -11,7 +11,7 @@
   },
   "windowsAndroidStudioPath": "d:\\pf\\Android Studio\\bin\\studio64.exe",
   "cordova": {},
-  "hideLogs": true,
+  "hideLogs": false,
   "overrideUserAgent": "",
   "appendUserAgent": "",
   "backgroundColor": "#ffffffff",
@@ -22,7 +22,7 @@
     "allowMixedContent": true,
     "captureInput": true,
     "webContentsDebuggingEnabled": true,
-    "hideLogs": true
+    "hideLogs": false
   },
   "ios": {
     "overrideUserAgent": "my custom user agent for iOS",
@@ -33,7 +33,7 @@
     "minVersion": "11.3",
     "cordovaLinkerFlags": ["-ObjC"],
     "allowsLinkPreview": false,
-    "hideLogs": true
+    "hideLogs": false
   },
   "server": {
     "url": "http://192.168.1.101:4000"

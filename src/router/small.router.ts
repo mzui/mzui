@@ -1,4 +1,4 @@
-import LayoutHomeSmall from '@coms/layouts/HomeSmall.vue';
+import LayoutHomeSmall from '@coms/small/LayoutDefault.vue';
 
 export const routes = [
    {
