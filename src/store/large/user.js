@@ -1,6 +1,7 @@
 import { login, logout, getUserInfo, getMessage, getContentByMsgId, hasRead, removeReaded, restoreTrash, getUnreadCount } from '@api/user';
 import { setToken, getToken } from '@coms/large/libs/util';
-
+import store from '@common/store';
+import api from '@api';
 const state = {
   userName: '',
   userId: '',
@@ -27,9 +28,10 @@ const mutations = {
   setAccess(state, access) {
     state.access = access;
   },
-  setToken(state, token) {
-    state.token = token;
-    setToken(token);
+  setLoginUser(state, user) {
+    state.user = user;
+    //setToken(token);
+    
   },
   setHasGetInfo(state, status) {
     state.hasGetInfo = status;
@@ -63,23 +65,13 @@ const getters = {
 };
 const actions = {
   // 登录
-  handleLogin({ commit }, { userName, password }) {
-    userName = userName.trim();
-    return new Promise((resolve, reject) => {
-      login({
-        userName,
-        password,
-      })
-        .then((res) => {
-          const data = res.data;
-          commit('setToken', data.token);
-          console.log('login', userName, password, data);
-          resolve();
-        })
-        .catch((err) => {
-          reject(err);
-        });
-    });
+  async handleLogin({ commit }, { username, password }) {
+    username = username.trim();
+    let {code, msg, data} = await api.user.login({username, password});
+    console.log('data=====', data);
+    await commit('setLoginUser', data);
+    await store.login(data);
+    return {code, msg, data};
   },
   // 退出登录
   handleLogOut({ state, commit }) {

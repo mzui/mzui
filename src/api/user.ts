@@ -1,8 +1,8 @@
 import fetch from './fetch';
 
-export const login = ({ userName, password }) => {
+export const login = ({ username, password }) => {
   const data = {
-    userName,
+    username,
     password,
   };
   return fetch({
@@ -34,7 +34,6 @@ export const getUnreadCount = async () => {
     url: 'message/count',
     method: 'get',
   });
-  console.log('>>>>>>>>>>>>>>>>>>>======s', s);
   return s;
 };
 

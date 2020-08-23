@@ -1,5 +1,11 @@
 import CommonIcon from '@coms/large/common-icon';
 import { showTitle } from '@coms/large/libs/util';
+
+
+function setViewHeight() {
+  let view = document.querySelector('#main_layout');
+  if(view) view.style.height = window.innerHeight + 'px';
+}
 export default {
   components: {
     CommonIcon,
@@ -9,6 +15,7 @@ export default {
       return showTitle(item, this);
     },
     showChildren(item) {
+      setViewHeight();
       return item.children && (item.children.length > 1 || (item.meta && item.meta.showAlways));
     },
     getNameOrHref(item, children0) {

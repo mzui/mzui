@@ -1,6 +1,5 @@
 import { Plugins } from '@capacitor/core';
 const { Storage } = Plugins;
-
 /**
  * 本地存储中心
  *
@@ -14,21 +13,20 @@ class DB {
       value: value,
     };
     await Storage.set({
-      key: 'user',
+      key: key,
       value: JSON.stringify(obj),
     });
   }
   async get(key: string) {
     try {
-      let str: any = await Storage.get({ key });
-      if (str === null) return undefined;
-      let obj = JSON.parse(str || '');
+      let obj: any = await Storage.get({ key });
+      if (obj === null) return undefined;
       if (obj.ttl <= 0) return obj.value;
       if (obj.startAt + obj.ttl < Date.now()) {
         this.del(key);
         return undefined;
       }
-      return obj.value;
+      return JSON.parse(obj.value);
     } catch (err) {}
     return undefined;
   }
@@ -40,15 +38,16 @@ class DB {
   }
 }
 const db: DB = new DB();
-const UserKey = 'username';
+const UserKey = '___user___';
 class Store {
   public readonly db: DB = db;
   async isLogin() {
-    let username = await db.get(UserKey);
-    return !!username;
+    let user = await db.get(UserKey);
+    console.log("is login user: " + user);
+    return !!user;
   }
-  async login(username) {
-    await db.set(UserKey, username);
+  async login(user) {
+    await db.set(UserKey, user);
   }
   async logout() {
     let username = await this.get(UserKey);

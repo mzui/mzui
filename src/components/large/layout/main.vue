@@ -1,5 +1,5 @@
 <template>
-  <Layout style="height: 100%;" class="main">
+  <Layout style="height: 100%;" class="main" id="main_layout">
     <Sider
       hide-trigger
       collapsible
@@ -58,6 +58,11 @@ import { routes } from '@/router';
 import minLogo from '@/assets/large/images/logo-min.jpg';
 import maxLogo from '@/assets/large/images/logo.jpg';
 import './main.less';
+window.addEventListener('resize', (e) => setViewHeight());
+function setViewHeight() {
+  let view = document.querySelector('#main_layout');
+  if(view) view.style.height = window.innerHeight + 'px';
+}
 export default {
   name: 'Main',
   components: {
@@ -79,6 +84,9 @@ export default {
     };
   },
   created() {},
+  mounted() {
+    setViewHeight();
+  },
   computed: {
     ...mapGetters('app', ['errorCount']),
     tagNavList() {
