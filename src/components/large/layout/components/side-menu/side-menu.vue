@@ -1,7 +1,7 @@
 <template>
   <div class="side-menu-wrapper">
     <slot></slot>
-    <Menu
+    <!--Menu
       ref="menu"
       v-show="!collapsed"
       :active-name="activeName"
@@ -26,6 +26,47 @@
             <span>{{ showTitle(item) }}</span>
           </MenuItem>
         </template>
+      </template>
+    </Menu-->
+    <Menu
+      ref="menu"
+      v-show="!collapsed"
+      :active-name="activeName"
+      :open-names="openedNames"
+      :accordion="accordion"
+      :theme="theme"
+      width="auto"
+      @on-select="handleSelect"
+    >
+      <template v-for="item in menuList">
+        <MenuItem v-if="!item.children || item.children.length <= 1" :name="`${item.name}`" :key="`menu-${item.name}`" replace>
+          <common-icon :type="item.icon || (item.children || [''])[0].icon" />
+          <span>{{ showTitle(item) }}</span>
+        </MenuItem>
+        <Submenu v-else :key="`menu-${item.name}`" :name="`${item.name}`">
+          <template slot="title">
+            <common-icon :type="item.icon || ''" />
+            <span>{{ showTitle(item) }}</span>
+          </template>
+          <template v-for="sitem in item.children">
+            <MenuItem v-if="!sitem.children || sitem.children.length <= 1" :name="`${item.name}-${sitem.name}`" :key="`${item.name}-${sitem.name}`">
+              <common-icon :type="sitem.icon || (sitem.children || [''])[0].icon" />
+              <span>{{ showTitle(sitem) }}</span>
+            </MenuItem>
+            <Submenu v-else :key="`${item.name}-${sitem.name}`" :name="`${item.name}-${sitem.name}`">
+              <template slot="title">
+                <common-icon :type="sitem.icon || ''" />
+                <span>{{ showTitle(sitem) }}</span>
+              </template>
+              <template v-for="s2item in sitem.children">
+                <MenuItem :name="`${item.name}-${sitem.name}-${s2item.name}`" :key="`${item.name}-${sitem.name}-${s2item.name}`">
+                  <common-icon :type="s2item.icon || ''" />
+                  <span>{{ showTitle(s2item) }}</span>
+                </MenuItem>
+              </template>
+            </Submenu>
+          </template>
+        </Submenu>
       </template>
     </Menu>
     <div class="menu-collapsed" v-show="collapsed" :list="menuList">
@@ -105,9 +146,20 @@ export default {
       openedNames: [],
     };
   },
+
   methods: {
+    showName(item) {},
     handleSelect(name) {
-      this.$emit('on-select', name);
+      let path = '/' + name.replace(/-/g, '/');
+      console.log('select ', name, path);
+      //this.$emit('on-select', name);
+      this.$router.push({
+        path,
+        //params,
+        //query,
+      });
+      event.preventDefault();
+      event.stopPropagation();
     },
     getOpenedNamesByActiveName(name) {
       return this.$route.matched.map((item) => item.name).filter((item) => item !== name);
@@ -137,6 +189,7 @@ export default {
     },
   },
   mounted() {
+    console.log('=====menuList', this.menuList);
     this.openedNames = getUnion(this.openedNames, this.getOpenedNamesByActiveName(name));
   },
 };

@@ -51,7 +51,7 @@ export default {
         password: this.passwordRules,
       };
     },
-  },
+  }, 
   methods: {
     handleSubmit() {
       this.$refs.loginForm.validate((valid) => {
