@@ -13,7 +13,7 @@ import {
 } from '../../components/large/libs/util';
 import { saveErrorLogger } from '../../api/data';
 import router from '../../router';
-import routers from '../../router/large.router';
+import { routes } from '../../router';
 import config from '@coms/large/libs/config';
 const { homeName } = config;
 
@@ -33,7 +33,7 @@ const state = {
   hasReadErrorPage: false,
 };
 const getters = {
-  menuList: (state, getters, rootState) => getMenuByRouter(routers, rootState.user.access),
+  menuList: (state, getters, rootState) => getMenuByRouter(routes, rootState.user.access),
   errorCount: (state) => state.errorList.length,
 };
 const mutations = {
@@ -44,7 +44,7 @@ const mutations = {
     state.homeRoute = getHomeRoute(routes, homeName);
   },
   setTagNavList(state, list) {
-    let tagList = [];
+    let tagList: any = [];
     if (list) {
       tagList = [...list];
     } else tagList = getTagNavListFromLocalstorage() || [];
@@ -86,7 +86,7 @@ const mutations = {
   },
 };
 const actions = {
-  addErrorLog({ commit, rootState }, info) {
+  addErrorLog({ commit, rootState, state, dispatch }, info) {
     if (!window.location.href.includes('error_logger_page')) commit('setHasReadErrorLoggerStatus', false);
     const {
       user: { token, userId, userName },

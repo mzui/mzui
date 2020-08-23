@@ -1,12 +1,11 @@
 import config from '../config';
 import moment from 'moment';
- 
 
 /* import { configure, getLogger, ConsoleAppender, Logger } from 'log4js';
 
 const logger = getLogger();
 logger.level = config.loggerLevel; */
-const logger= console;
+const logger = console;
 
 /**
  * 日志输出格式
@@ -28,12 +27,10 @@ const layout = {
   },
 }); */
 
-
 export class Log {
-  private logger=console;
+  private logger = console;
   private categories = {};
-  constructor() {
-  }
+  constructor() {}
 
   level: string;
 

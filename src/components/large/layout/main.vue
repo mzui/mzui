@@ -54,7 +54,7 @@ import Language from './components/language';
 import ErrorStore from './components/error-store';
 import { mapMutations, mapActions, mapGetters } from 'vuex';
 import { getNewTagList, routeEqual } from '@coms/large/libs/util';
-import routers from '@/router/large.router';
+import { routes } from '@/router';
 import minLogo from '@/assets/large/images/logo-min.jpg';
 import maxLogo from '@/assets/large/images/logo.jpg';
 import './main.less';
@@ -78,8 +78,9 @@ export default {
       isFullscreen: false,
     };
   },
+  created() {},
   computed: {
-    ...mapGetters(['errorCount']),
+    ...mapGetters('app', ['errorCount']),
     tagNavList() {
       return this.$store.state.app.tagNavList;
     },
@@ -97,7 +98,9 @@ export default {
       return list;
     },
     menuList() {
-      return this.$store.getters.menuList;
+      //console.log(".........menuList", this.$store, this.$store.getters['app/menuList'])
+      //return this.$store.getters.menuList;
+      return this.$store.getters['app/menuList'];
     },
     local() {
       return this.$store.state.app.local;
@@ -110,8 +113,8 @@ export default {
     },
   },
   methods: {
-    ...mapMutations(['setBreadCrumb', 'setTagNavList', 'addTag', 'setLocal', 'setHomeRoute', 'closeTag']),
-    ...mapActions(['handleLogin', 'getUnreadMessageCount']),
+    ...mapMutations('app', ['setBreadCrumb', 'setTagNavList', 'addTag', 'setLocal', 'setHomeRoute', 'closeTag']),
+    ...mapActions('user', ['handleLogin', 'getUnreadMessageCount']),
     turnToPage(route) {
       let { name, params, query } = {};
       if (typeof route === 'string') name = route;
@@ -166,7 +169,7 @@ export default {
      * @description 初始化设置面包屑导航和标签导航
      */
     this.setTagNavList();
-    this.setHomeRoute(routers);
+    this.setHomeRoute(routes);
     const { name, params, query, meta } = this.$route;
     this.addTag({
       route: { name, params, query, meta },

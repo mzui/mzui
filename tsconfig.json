@@ -28,8 +28,7 @@
       "@coms/*": ["src/components/*"],
       "@views/*": ["src/views/*"],
       "@common/*": ["src/common/*"],
-      "@api/*": ["src/api/*"],
-      "#{view}": [""]
+      "@api/*": ["src/api/*"]
     },
     "allowJs": true /* Allow javascript files to be compiled. */,
     // "checkJs": true,                       /* Report errors in .js files. */

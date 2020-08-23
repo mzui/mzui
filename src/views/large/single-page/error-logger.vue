@@ -10,13 +10,13 @@
 import { mapMutations } from 'vuex';
 export default {
   name: 'error_logger_page',
-  data () {
+  data() {
     return {
       columns: [
         {
           type: 'index',
           title: '序号',
-          width: 100
+          width: 100,
         },
         {
           key: 'type',
@@ -27,67 +27,63 @@ export default {
               <div>
                 <icon size={16} type={row.type === 'ajax' ? 'md-link' : 'md-code-working'}></icon>
               </div>
-            )
-          }
+            );
+          },
         },
         {
           key: 'code',
           title: '编码',
           render: (h, { row }) => {
-            return (
-              <span>{ row.code === 0 ? '-' : row.code }</span>
-            )
-          }
+            return <span>{row.code === 0 ? '-' : row.code}</span>;
+          },
         },
         {
           key: 'mes',
-          title: '信息'
+          title: '信息',
         },
         {
           key: 'url',
-          title: 'URL'
+          title: 'URL',
         },
         {
           key: 'time',
           title: '时间',
           render: (h, { row }) => {
             return (
-              <span>{ 
-                //dayjs(row.time).format('YYYY-MM-DD HH:mm:ss') 
-                this.$moment(row.time).format('YYYY-MM-DD HH:mm:ss')
-              }</span>
-            )
+              <span>
+                {
+                  //dayjs(row.time).format('YYYY-MM-DD HH:mm:ss')
+                  this.$moment(row.time).format('YYYY-MM-DD HH:mm:ss')
+                }
+              </span>
+            );
           },
           sortable: true,
-          sortType: 'desc'
-        }
-      ]
-    }
+          sortType: 'desc',
+        },
+      ],
+    };
   },
   computed: {
-    errorList () {
-      return this.$store.state.app.errorList
-    }
+    errorList() {
+      return this.$store.state.app.errorList;
+    },
   },
   methods: {
-    ...mapMutations([
-      'setHasReadErrorLoggerStatus'
-    ]),
-    exportData () {
+    ...mapMutations('app', ['setHasReadErrorLoggerStatus']),
+    exportData() {
       this.$refs.table.exportCsv({
-        filename: '错误日志.csv'
-      })
-    }
+        filename: '错误日志.csv',
+      });
+    },
   },
-  activated () {
-    this.setHasReadErrorLoggerStatus()
+  activated() {
+    this.setHasReadErrorLoggerStatus();
   },
-  mounted () {
-    this.setHasReadErrorLoggerStatus()
-  }
-}
+  mounted() {
+    this.setHasReadErrorLoggerStatus();
+  },
+};
 </script>
 
-<style>
-
-</style>
+<style></style>

@@ -1,3 +1,5 @@
+const EnvConfig = require('./env/#{view}.config').default;
+
 export enum Platform {
   Android = 'android',
   Ios = 'ios',
@@ -9,7 +11,6 @@ export enum Target {
   Electron = 'electron',
   Ios = 'ios',
 }
-console.log("config ===============  ", process.env);
 const isDev = process.env.NODE_ENV === 'development';
 const Config = {
   isDev: isDev,
@@ -18,6 +19,10 @@ const Config = {
   target: process.env.Target,
   view: process.env.View,
   isLarge: process.env.View == 'large',
-  apiHost: 'http://127.0.0.1:8081'
+  apiHost: 'http://127.0.0.1:8081',
+  path(path: string) {
+    return path;
+  },
+  ...EnvConfig,
 };
 export default Config;

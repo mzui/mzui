@@ -1,6 +1,6 @@
 import Cookies from 'js-cookie';
 // cookie保存的天数
-import config from './config';
+import config from '@/config';
 import { forEach, hasOneOf, objEqual } from './tools';
 const { title, cookieExpires, useI18n } = config;
 
@@ -350,7 +350,7 @@ export const routeHasExist = (tagNavList, routeItem) => {
   });
   return res;
 };
- 
+
 export const localSave = (key, value) => {
   localStorage.setItem(key, value);
 };

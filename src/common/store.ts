@@ -50,22 +50,22 @@ class Store {
   async login(username) {
     await db.set(UserKey, username);
   }
-  async logout(){
+  async logout() {
     let username = await this.get(UserKey);
     await db.del(username);
   }
   async set(key: string, value: any, ttl?: number) {
-    let username = await this.get(UserKey);
+    let username = await db.get(UserKey);
     key = makeKey(username, key);
     db.set(key, value, ttl);
   }
   async get(key: string) {
-    let username = await this.get(UserKey);
+    let username = await db.get(UserKey);
     key = makeKey(username, key);
     return db.get(key);
   }
   async del(key: string) {
-    let username = await this.get(UserKey);
+    let username = await db.get(UserKey);
     key = makeKey(username, key);
     return db.del(key);
   }

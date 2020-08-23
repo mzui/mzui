@@ -5,10 +5,10 @@
 </template>
 <script>
 export default {
-  methods: { 
-    onDe(){
-      console.log(">>>>ssss");
-    }
-  }
-}
+  methods: {
+    onDe() {
+      console.log('>>>>ssss');
+    },
+  },
+};
 </script>

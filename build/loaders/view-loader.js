@@ -5,7 +5,7 @@ module.exports = function (source, sourceMap, meta) {
   const options = loaderUtils.getOptions(this);
   let list = source.split('\n');
   list.forEach((line, i) => {
-    if (/require\([^)]+#\{view\}/.test(line)) {
+    if (/[\s\n\r\t]require\s*\([^)]+#\{view\}/.test(line)) {
       list[i] = line.replace(/\#{view\}/g, options.view);
     }
   });

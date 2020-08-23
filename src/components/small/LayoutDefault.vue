@@ -1,6 +1,6 @@
 <template>
   <van-row style="margin-top: 20px;">
-    <van-col span="22" offset="1" >
+    <van-col span="22" offset="1">
       <router-view />
     </van-col>
 
@@ -14,19 +14,21 @@
 </template>
 <script>
 export default {
-    name: 'HomeSmall',
-    components:{}, 
-    props:{}, 
-    data() {return {
-        active: 0,
-    }},
-    created() { },
-    mounted() { },
-    methods: { },
-    computed: { },
-}
+  name: 'HomeSmall',
+  components: {},
+  props: {},
+  data() {
+    return {
+      active: 0,
+    };
+  },
+  created() {},
+  mounted() {},
+  methods: {},
+  computed: {},
+};
 </script>
-<style lang='less' scoped></style>
-<style lang='less'>
-@import './small.base.less'; 
+<style lang="less" scoped></style>
+<style lang="less">
+@import './base.less';
 </style>

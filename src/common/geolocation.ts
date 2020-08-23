@@ -1,6 +1,10 @@
+/**
+ * geo 经纬度获取
+ *
+ */
 import { Plugins } from '@capacitor/core';
 
-const { Geolocation, Network  } = Plugins;
+const { Geolocation, Network } = Plugins;
 
 class Geolocation1 {
   async getCurrentPosition() {
@@ -13,13 +17,13 @@ class Geolocation1 {
     const wait = Geolocation.watchPosition({}, (position, err) => callback(position, err));
   }
 
-  async getNetworkStatus(){
+  async getNetworkStatus() {
     let status = await Network.getStatus();
-    console.log(">>>>>net");
+    console.log('>>>>>net');
     return status;
   }
 }
 Network.addListener('networkStatusChange', (status) => {
-    console.log("Network status changed", status);
-  });
+  console.log('Network status changed', status);
+});
 export default new Geolocation1();

@@ -10,32 +10,26 @@
 export default {
   name: 'Trigger',
   props: {
-    mode: String
+    mode: String,
   },
-  data () {
+  data() {
     return {
       prefix: 'ivu-split-trigger',
-      initOffset: 0
-    }
+      initOffset: 0,
+    };
   },
   computed: {
-    isVertical () {
-      return this.mode === 'vertical'
+    isVertical() {
+      return this.mode === 'vertical';
     },
-    classes () {
-      return [
-        this.prefix,
-        this.isVertical ? `${this.prefix}-vertical` : `${this.prefix}-horizontal`
-      ]
+    classes() {
+      return [this.prefix, this.isVertical ? `${this.prefix}-vertical` : `${this.prefix}-horizontal`];
     },
-    barConClasses () {
-      return [
-        `${this.prefix}-bar-con`,
-        this.isVertical ? 'vertical' : 'horizontal'
-      ]
-    }
-  }
-}
+    barConClasses() {
+      return [`${this.prefix}-bar-con`, this.isVertical ? 'vertical' : 'horizontal'];
+    },
+  },
+};
 </script>
 
 <style lang="less">

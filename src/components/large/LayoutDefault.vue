@@ -1,21 +1,21 @@
 <template>
-<div>
-
-
-</div>
+  <div></div>
 </template>
 <script>
 export default {
-    name: 'HomeLarge',
-    components:{}, 
-    props:{}, 
-    data() {return {}},
-    created() { },
-    mounted() { },
-    methods: { },
-    computed: { },
-}
+  name: 'HomeLarge',
+  components: {},
+  props: {},
+  data() {
+    return {};
+  },
+  created() {},
+  mounted() {},
+  methods: {},
+  computed: {},
+};
 </script>
-<style lang='less' scoped></style>
-<style lang='less'>
+<style lang="less" scoped></style>
+<style lang="less">
+@import './base.less';
 </style>

@@ -4,9 +4,7 @@ import config from '../config';
 
 Vue.use(Vuex);
 
-//const modules = config.isLarge ? require('./large') : require('./small');
-const modules = require(`./#{view}`);
-console.log(">>>>>>>>modules", modules);
+const modules = require(`./#{view}`).default;
 /* const vuex = new Vuex.Store({
   modules,
   plugins: [
@@ -17,7 +15,7 @@ console.log(">>>>>>>>modules", modules);
 });
   */
 export default new Vuex.Store({
-  state: {
+  /*   state: {
     //
   },
   mutations: {
@@ -25,6 +23,6 @@ export default new Vuex.Store({
   },
   actions: {
     //
-  },
+  }, */
   modules: modules,
 });

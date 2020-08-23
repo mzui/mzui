@@ -1,7 +1,7 @@
 <template>
   <Card>
     <h3 style="padding: 10px 0;">drag-drawer组件是对iview的drawer组件的封装，在支持drawer所有api的基础上，支持可拖动和footer底部插槽</h3>
-    <div style="padding: 10px 0">
+    <div style="padding: 10px 0;">
       <b>
         方向
         <i-switch v-model="placement">
@@ -13,11 +13,14 @@
         是否可拖动
         <i-switch v-model="draggable"></i-switch>
       </b>
-      <Button @click="showContainerBDrawer = !showContainerBDrawer" type="primary" style="margin-left: 10px">{{ showContainerBDrawer ? '关闭' : '打开' }}容器内抽屉</Button>
-      <Button @click="showWindowBDrawer = true" type="primary" style="margin-left: 10px">打开全屏抽屉</Button>
+      <Button @click="showContainerBDrawer = !showContainerBDrawer" type="primary" style="margin-left: 10px;"
+        >{{ showContainerBDrawer ? '关闭' : '打开' }}容器内抽屉</Button
+      >
+      <Button @click="showWindowBDrawer = true" type="primary" style="margin-left: 10px;">打开全屏抽屉</Button>
     </div>
     <div class="drag-drawer-inner-box">
-      <drag-drawer v-model="showContainerBDrawer"
+      <drag-drawer
+        v-model="showContainerBDrawer"
         :width.sync="width2"
         min-width="30px"
         :inner="true"
@@ -25,7 +28,8 @@
         :placement="placementComputed"
         :draggable="draggable"
         @on-resize="handleResize"
-        :scrollable="true">
+        :scrollable="true"
+      >
         <div slot="header">
           <Icon type="md-aperture" :size="18"></Icon>
           <b>这是标题</b>
@@ -37,12 +41,14 @@
         </div>
       </drag-drawer>
     </div>
-    <drag-drawer v-model="showWindowBDrawer"
+    <drag-drawer
+      v-model="showWindowBDrawer"
       :width.sync="width1"
       :min-width="300"
       :placement="placementComputed"
       :draggable="draggable"
-      :scrollable="true">
+      :scrollable="true"
+    >
       <div slot="header">
         <Icon type="md-aperture" :size="18"></Icon>
         <b>这是标题</b>
@@ -54,13 +60,13 @@
 </template>
 
 <script>
-import DragDrawer from '@coms/large/drag-drawer'
+import DragDrawer from '@coms/large/drag-drawer';
 export default {
   name: 'drag_drawer_page',
   components: {
-    DragDrawer
+    DragDrawer,
   },
-  data () {
+  data() {
     return {
       showWindowBDrawer: false,
       showContainerBDrawer: false,
@@ -68,26 +74,26 @@ export default {
       width1: 300,
       width2: 200,
       placement: false,
-      draggable: true
-    }
+      draggable: true,
+    };
   },
   computed: {
-    placementComputed () {
-      return this.placement ? 'left' : 'right'
-    }
+    placementComputed() {
+      return this.placement ? 'left' : 'right';
+    },
   },
   methods: {
-    handleResize (event) {
-      const { atMin } = event
+    handleResize(event) {
+      const { atMin } = event;
       /* eslint-disable */
       console.log(atMin);
     },
-  }
-}
+  },
+};
 </script>
 
 <style lang="less">
-.drag-drawer-inner-box{
+.drag-drawer-inner-box {
   position: relative;
   width: 500px;
   height: 400px;

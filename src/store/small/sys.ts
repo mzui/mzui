@@ -16,23 +16,18 @@ const state = {
   lang: navigator.language || 'CN',
 };
 const getters = {
-
   getLangList: (state) => () => {
     //方法访问
     return state.langList;
-  }
+  },
 };
 const mutations = {
-
   setLogout: (state) => {
     state.user = {};
   },
 };
 const actions = {
-  async initData(context, {  }) {
-    
-  },
-  
+  async initData(context, {}) {},
 };
 
 export default {

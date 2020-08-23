@@ -1,7 +1,7 @@
 import LayoutHomeSmall from '@coms/small/LayoutDefault.vue';
 
 export const routes = [
-   {
+  {
     path: '/',
     name: 'index',
     component: LayoutHomeSmall,
@@ -52,7 +52,7 @@ export const routes = [
         },
       },
     ],
-  }, 
+  },
 
   {
     path: '/about',

@@ -9,13 +9,18 @@ import moment from 'moment';
 import store from './common/store';
 import query from './common/domquery';
 import './common/ui';
+import importDirective from './directive';
+import i18n from './locale';
 Vue.config.productionTip = false;
-  
+/**
+ * 注册指令
+ */
+importDirective(Vue);
 Vue.use(async (Vue, options) => {
   Vue.prototype.$ = function (...args) {
     return query(...args);
   };
-  Vue.prototype.$store = store;
+  //Vue.prototype.$store = store;
   Vue.prototype.$isDev = config.isDev;
   Vue.prototype.$logger = logger;
   Vue.prototype.$fetch = fetch;
@@ -33,6 +38,7 @@ if (process.env.NODE_ENV !== 'production') require('@/api/mock');
 
 new Vue({
   router,
+  i18n,
   store: vuexStore,
   render: (h) => h(App),
 }).$mount('#app');

@@ -1,11 +1,11 @@
 /**
- * 使用ui框架组件
+ * 基本ui常用方法
  *
  */
 import Vue from 'vue';
 import config from '../config';
-let UIFrame: any = require('./view-loader/view.#{view}.loader').UIFrame;
 
+const UIFrame = config.UIFrame;
 export interface Message {
   message: string | number;
   icon?: string;
@@ -16,7 +16,7 @@ const ui = {
   /** 提示轻提示 */
   toast(message: Message) {
     if (config.isLarge) {
-      UIFrame.Message({
+      UIFrame.Message.info({
         content: message.message,
         closable: true,
       });
@@ -27,15 +27,16 @@ const ui = {
       });
     }
   },
+  /** 加载进度条 */
   loadingBar: {
     start() {
-        config.isLarge ? UIFrame.LoadingBar.start() :  null;
+      config.isLarge ? UIFrame.LoadingBar.start() : null;
     },
     finish() {
-      config.isLarge ? UIFrame.LoadingBar.finish() :  null;
+      config.isLarge ? UIFrame.LoadingBar.finish() : null;
     },
     error() {
-      config.isLarge ? UIFrame.LoadingBar.error() :  null;
+      config.isLarge ? UIFrame.LoadingBar.error() : null;
     },
   },
 };
@@ -44,5 +45,5 @@ Vue.use(async (Vue, options) => {
   Vue.prototype.$toast = ui.toast;
   //analytics.trackStartup();
 });
-ui.toast({message: 'ok'})
+ui.toast({ message: 'ok' });
 export default ui;

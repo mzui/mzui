@@ -1,11 +1,11 @@
-import fetch from './fetch'
+import fetch from './fetch';
 
 export const getRouterReq = (access) => {
   return fetch({
     url: 'get_router',
     params: {
-      access
+      access,
     },
-    method: 'get'
-  })
-}
+    method: 'get',
+  });
+};

@@ -3,8 +3,8 @@ import Vue from 'vue';
 import axios from 'axios';
 import config from '../config';
 import store from '../common/store';
-//import i18n from '../i18n';
-import ui from '../common/ui'; 
+import i18n from '../locale';
+import ui from '../common/ui';
 const isDev = process.env.NODE_ENV === 'development';
 import logger from '../common/logger';
 
@@ -24,7 +24,7 @@ export default function fetch(options): Promise<any> {
   }
 
   return new Promise(async (resolve, reject) => {
-    let user = await store.get('user');
+    //let user = await store.get('user');
     const instance = axios.create({
       //baseURL: SERVER_BASE_URL||'',
       timeout: 60 * 1000,
@@ -34,6 +34,7 @@ export default function fetch(options): Promise<any> {
         //lang: i18n.locale,
         //token: user?.token,
         //version: config.appVersion
+        'accept-language': i18n.locale,
       },
     });
     // http request 拦截器
