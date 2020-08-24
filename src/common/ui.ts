@@ -45,5 +45,4 @@ Vue.use(async (Vue, options) => {
   Vue.prototype.$toast = ui.toast;
   //analytics.trackStartup();
 });
-ui.toast({ message: 'ok' });
 export default ui;
