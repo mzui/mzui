@@ -84,9 +84,6 @@ export default {
     };
   },
   created() {},
-  mounted() {
-    setViewHeight();
-  },
   computed: {
     ...mapGetters('app', ['errorCount']),
     tagNavList() {
@@ -169,10 +166,11 @@ export default {
       });
       this.setBreadCrumb(newRoute);
       this.setTagNavList(getNewTagList(this.tagNavList, newRoute));
-      this.$refs.sideMenu.updateOpenName(newRoute.name);
+      //this.$refs.sideMenu.updateOpenName(newRoute.name);
     },
   },
   mounted() {
+    setViewHeight();
     /**
      * @description 初始化设置面包屑导航和标签导航
      */

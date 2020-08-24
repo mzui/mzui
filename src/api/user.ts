@@ -22,7 +22,7 @@ export const getUserInfo = (token) => {
   });
 };
 
-export const logout = (token) => {
+export const logout = () => {
   return fetch({
     url: 'logout',
     method: 'post',

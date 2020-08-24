@@ -20,7 +20,7 @@ Vue.use(async (Vue, options) => {
   Vue.prototype.$ = function (...args) {
     return query(...args);
   };
-  //Vue.prototype.$store = store;
+  Vue.prototype.$storedb = store;
   Vue.prototype.$isDev = config.isDev;
   Vue.prototype.$logger = logger;
   Vue.prototype.$fetch = fetch;

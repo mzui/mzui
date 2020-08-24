@@ -6,18 +6,7 @@ const { title, cookieExpires, useI18n } = config;
 
 export const TOKEN_KEY = 'token';
 
-const cookiesss = {};
-export const setToken = (token) => {
-  cookiesss[TOKEN_KEY] = token;
-  Cookies.set(TOKEN_KEY, token, { expires: cookieExpires || 1 });
-  console.log('get cookie', Cookies.get(TOKEN_KEY));
-};
 
-export const getToken = () => {
-  const token = Cookies.get(TOKEN_KEY) || cookiesss[TOKEN_KEY];
-  if (token) return token;
-  else return false;
-};
 
 export const hasChild = (item) => {
   return item.children && item.children.length !== 0;
@@ -41,12 +30,13 @@ export const getMenuByRouter = (list, access) => {
         icon: (item.meta && item.meta.icon) || '',
         name: item.name,
         meta: item.meta,
+        path: item.path,
       };
-      if ((hasChild(item) || (item.meta && item.meta.showAlways)) && showThisMenuEle(item, access)) {
+      if ((hasChild(item) || (item.meta && item.meta.showAlways))) {
         obj.children = getMenuByRouter(item.children, access);
       }
       if (item.meta && item.meta.href) obj.href = item.meta.href;
-      if (showThisMenuEle(item, access)) res.push(obj);
+      res.push(obj);
     }
   });
   return res;

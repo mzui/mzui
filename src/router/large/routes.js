@@ -57,6 +57,7 @@ export const routes = [
       title: '文档',
       href: 'https://lison16.github.io/iview-admin-doc/#/',
       icon: 'ios-book',
+      isDev: true
     },
   },
   {
@@ -65,6 +66,7 @@ export const routes = [
     component: Layout,
     meta: {
       hideInBread: true,
+      isDev: true
     },
     children: [
       {
@@ -73,6 +75,7 @@ export const routes = [
         meta: {
           icon: '_qq',
           title: 'QQ群',
+          isDev: true
         },
         component: () => import('@views/large/join-page.vue'),
       },
@@ -85,6 +88,7 @@ export const routes = [
     meta: {
       hideInBread: true,
       hideInMenu: true,
+      isDev: true
     },
     children: [
       {
@@ -104,6 +108,7 @@ export const routes = [
     meta: {
       icon: 'logo-buffer',
       title: '组件',
+      isDev: true
     },
     component: Layout,
     children: [
@@ -252,6 +257,7 @@ export const routes = [
     meta: {
       icon: 'ios-stats',
       title: 'EXCEL导入导出',
+      isDev: true
     },
     component: Layout,
     children: [

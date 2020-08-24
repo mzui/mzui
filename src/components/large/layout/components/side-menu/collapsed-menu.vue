@@ -14,8 +14,15 @@
     /></a>
     <DropdownMenu ref="dropdown" slot="list">
       <template v-for="child in children">
-        <collapsed-menu v-if="showChildren(child)" :icon-size="iconSize" :parent-item="child" :key="`drop-${child.name}`"></collapsed-menu>
-        <DropdownItem v-else :key="`drop-${child.name}`" :name="child.name"
+        <!--  :name="child.name" -->
+        <collapsed-menu
+          v-if="showChildren(child)"
+          :icon-size="iconSize"
+          :pp-item="parentItem"
+          :parent-item="child"
+          :key="`drop-${child.name}`"
+        ></collapsed-menu>
+        <DropdownItem v-else :key="`drop-${child.name}`" :name="item2path(ppItem, parentItem, child)"
           ><common-icon :size="iconSize" :type="child.icon" /><span class="menu-title">{{ showTitle(child) }}</span></DropdownItem
         >
       </template>
@@ -39,6 +46,7 @@ export default {
       type: Number,
       default: 16,
     },
+    ppItem: { type: Object },
   },
   data() {
     return {

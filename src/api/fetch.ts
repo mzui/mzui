@@ -5,7 +5,6 @@ import config from '../config';
 import store from '../common/store';
 import i18n from '../locale';
 import ui from '../common/ui';
-const isDev = process.env.NODE_ENV === 'development';
 import logger from '../common/logger';
 
 const ReqCachePrefix = 'req-cache-prefix-';

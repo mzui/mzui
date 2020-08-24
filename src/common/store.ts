@@ -1,5 +1,7 @@
 import { Plugins } from '@capacitor/core';
 const { Storage } = Plugins;
+import Cookies from 'js-cookie';
+
 /**
  * 本地存储中心
  *
@@ -19,8 +21,9 @@ class DB {
   }
   async get(key: string) {
     try {
-      let obj: any = await Storage.get({ key });
-      if (obj === null) return undefined;
+      let obj: any = ((await Storage.get({ key })) || '').value;
+      if (obj === null || obj === undefined) return undefined;
+      obj = JSON.parse(obj);
       if (obj.ttl <= 0) return obj.value;
       if (obj.startAt + obj.ttl < Date.now()) {
         this.del(key);
@@ -43,15 +46,20 @@ class Store {
   public readonly db: DB = db;
   async isLogin() {
     let user = await db.get(UserKey);
-    console.log("is login user: " + user);
     return !!user;
   }
   async login(user) {
-    await db.set(UserKey, user);
+    if (user) {
+      await db.set(UserKey, user);
+      return user;
+    } else {
+      return await db.get(UserKey);
+    }
   }
   async logout() {
     let username = await this.get(UserKey);
     await db.del(username);
+    Cookies.remove('token');
   }
   async set(key: string, value: any, ttl?: number) {
     let username = await db.get(UserKey);

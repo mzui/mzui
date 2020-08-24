@@ -19,7 +19,7 @@ router.beforeEach(async (to, from, next) => {
   lang && setLang instanceof Function && setLang.bind(router.app)(lang);
 
   let isLogin = await store.isLogin();
-  console.log('isLogin', isLogin, to);
+  console.log('isLogin', isLogin, from, to);
   if (to.path == '/login') {
     return next();
   }

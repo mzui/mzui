@@ -1,4 +1,3 @@
-/* eslint-disable */
 import XLSX from 'xlsx';
 
 function auto_width(ws, data) {

@@ -1,12 +1,10 @@
 import { login, logout, getUserInfo, getMessage, getContentByMsgId, hasRead, removeReaded, restoreTrash, getUnreadCount } from '@api/user';
-import { setToken, getToken } from '@coms/large/libs/util';
 import store from '@common/store';
 import api from '@api';
 const state = {
   userName: '',
   userId: '',
   avatarImgPath: '',
-  token: getToken(),
   access: '',
   hasGetInfo: false,
   unreadCount: 0,
@@ -30,7 +28,6 @@ const mutations = {
   },
   setLoginUser(state, user) {
     state.user = user;
-    //setToken(token);
     
   },
   setHasGetInfo(state, status) {
@@ -68,28 +65,14 @@ const actions = {
   async handleLogin({ commit }, { username, password }) {
     username = username.trim();
     let {code, msg, data} = await api.user.login({username, password});
-    console.log('data=====', data);
     await commit('setLoginUser', data);
     await store.login(data);
     return {code, msg, data};
   },
   // 退出登录
-  handleLogOut({ state, commit }) {
-    return new Promise((resolve, reject) => {
-      logout(state.token)
-        .then(() => {
-          commit('setToken', '');
-          commit('setAccess', []);
-          resolve();
-        })
-        .catch((err) => {
-          reject(err);
-        });
-      // 如果你的退出登录无需请求接口，则可以直接使用下面三行代码而无需使用logout调用接口
-      // commit('setToken', '')
-      // commit('setAccess', [])
-      // resolve()
-    });
+  async handleLogOut({ state, commit }) {
+    logout();
+    await store.logout();
   },
   // 获取用户相关信息
   getUserInfo({ state, commit }) {

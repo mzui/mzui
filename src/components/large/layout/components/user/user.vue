@@ -29,7 +29,7 @@ export default {
     },
   },
   methods: {
-    ...mapActions(['handleLogOut']),
+    ...mapActions('user', ['handleLogOut']),
     logout() {
       this.handleLogOut().then(() => {
         this.$router.push({
