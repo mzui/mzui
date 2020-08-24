@@ -28,7 +28,6 @@ Vue.use(async (Vue, options) => {
   Vue.prototype.$config = config;
   //analytics.trackStartup();
 });
-if (process.env.NODE_ENV !== 'production') require('@/api/mock');
 
 /* if (config.view == 'large') {
 } else {

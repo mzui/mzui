@@ -15,6 +15,7 @@ const isDev = process.env.NODE_ENV === 'development';
 const Config = {
   isDev: isDev,
   loggerLevel: 'log',
+  apiMock: true,
   platform: process.env.Platform,
   target: process.env.Target,
   view: process.env.View,
